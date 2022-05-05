@@ -11,7 +11,22 @@ const styles={
         width:'300px',
         right:'50px',
 
+    },
+    ul:{
+        margin:0,
+        padding: 0,
+    },
+    producto:{
+        listStyleType:'none',
+        display:'flex',
+        justifyContent:'space-between',
+        alignItems:'center',
+        padding:'25px 20px',
+        borderBottom:'solid 1px #aaa'
+        
     }
+
+
 }
 
 
@@ -22,9 +37,11 @@ class DetallesCarro extends Component{
         return(
             
             <div style={styles.detallesCarro}>
-                <ul>
-                    {carro.map(x => <li key={x.name}> <img src={x.img} alt={x.name} width='50' height='32'/>
-                    {x.name}</li>)}
+                <ul style={styles.ul}>
+                    {carro.map(x => <li key={x.name} style={styles.producto}> 
+                    <img src={x.img} alt={x.name} width='50' height='32'/>
+                    {x.name} <span>{x.cantidad}</span>
+                    </li>)}
                 </ul>
             </div>
         )

@@ -6,6 +6,7 @@ import Title from './components/Title'
 import Navbar from './components/Navbar'
 
 
+
 class App extends Component{
     state={
         productos:[
@@ -15,9 +16,8 @@ class App extends Component{
             { name:'Lechuga', price:500, img:'https://cdn.pixabay.com/photo/2016/03/05/22/01/lettuce-1239155_960_720.jpg'}
         ],
 
-        carro:[
-
-        ],
+        carro:[],
+        esCarroVisible:false,
     }
 
     agregarAlCarro = (producto)=>{
@@ -40,12 +40,20 @@ class App extends Component{
     })
 }
 
+mostrarCarro = () =>{
+    if(!this.state.carro.length){
+        return
+    }
+    this.setState({ esCarroVisible:!this.state.esCarroVisible })
+}
+
 
     render(){
-        console.log(this.state.carro)
+
+            const { esCarroVisible } = this.state
         return(
             <div>
-                <Navbar carro={this.state.carro}/>
+                <Navbar carro={this.state.carro} esCarroVisible={esCarroVisible} mostrarCarro={this.mostrarCarro}/>
                 <Layout>
                     <Title/>
                     <Productos
@@ -59,5 +67,6 @@ class App extends Component{
         )
     }
 }
+
 
 export default App;
